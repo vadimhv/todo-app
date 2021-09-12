@@ -1,0 +1,111 @@
+.wrapper {
+    text-align: left;
+    padding: 0 0 0 80px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    background: #f9d890;
+    color: #4c4c4c;
+    border-radius: 10px;
+    width: 300px;
+    height: 100%;
+}
+
+.item:first-child {
+    margin-top: 0;
+}
+
+.inputTextBlock {
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.delete {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.checked {
+    text-decoration: line-through;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 200ms;
+    visibility: visible;
+}
+
+.popup {
+    margin: 15% auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+
+
+.popupTriggersWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popupTrigger {
+    cursor: pointer;
+}
+
+.popupAddTrigger {
+    background: #4c4c4c;
+    color: #fff;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.popupContentWrapper {
+    margin-top: 30px;
+}
+
+.popupContentTitle {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4c4c4c
+}
+
+.popupContentInput {
+    width: 98%;
+    margin-top: 20px;
+    height: 25px;
+    padding: 5px 0 5px 10px;
+    background: #e2e2e2;
+    border: none;
+    border-radius: 10px;
+}
+
+.popupContentInput:focus {
+    outline: none;
+}

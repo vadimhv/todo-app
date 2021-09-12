@@ -1,0 +1,19 @@
+.menu {
+    width: 800px;
+    text-align: left;
+    padding: 20px 0 20px 80px;
+}
+
+.add {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+}
+
+.plus {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
