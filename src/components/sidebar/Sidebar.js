@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './Sidebar.module.css';
 
-/* Img */
-import cancel from '../../assets/img/cancel.png';
+import TaskBlockItem from "./taskBlockItem/TaskBlockItem";
 
 const Sidebar = (props) => {
 
@@ -14,18 +13,8 @@ const Sidebar = (props) => {
                 todo
             </div>
             <div className={styles.tasksItems}>
-                {tasks.map((t,index) => {
-                    return <div className={styles.tasksItem} key={t.id} onClick={() => setActiveTasksBlockId(t.id)}>
-                        <div className={styles.tasksCount}>
-                            {index + 1}
-                        </div>
-                        <div>
-                            {t.title}
-                        </div>
-                        <div>
-                            <img src={cancel} className={styles.cancel} alt="cancel" onClick={() => deleteTasksBlock(t.id)}/>
-                        </div>
-                    </div>
+                {tasks.map(t => {
+                    return <TaskBlockItem id={t.id} title={t.title} setActiveTasksBlockId={setActiveTasksBlockId} deleteTasksBlock={deleteTasksBlock}/>
                 })}
             </div>
         </div>

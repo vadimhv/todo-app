@@ -7,24 +7,25 @@ import {useState} from "react";
 function App() {
     const [tasksBlock, setTasksBlock] = useState([
         {
-            id: 1, title: 'test', todos: [
-                {id: 1, text: 'text1', checked: false},
-                {id: 2, text: 'text2', checked: false},
-                {id: 3, text: 'text3', checked: false}
+            id: 1, title: 'sport', todos: [
+                {id: 1, title: 'The first task title', text: 'text1', checked: false},
+                {id: 2, title: 'The second task title', text: 'text2', checked: false},
+                {id: 3, title: 'The third task title', text: 'text3', checked: false}
             ]
         },
         {
-            id: 2, title: 'test2', todos: [
-                {id: 1, text: 'text12', checked: true},
-                {id: 2, text: 'text22', checked: false},
-                {id: 3, text: 'text32', checked: false}
+            id: 2, title: 'work', todos: [
+                {id: 1, title: 'The fourth task title', text: 'text4', checked: true},
+                {id: 2, title: 'The fifth task title', text: 'text5', checked: false},
+                {id: 3, title: 'The sixth task title', text: 'text6', checked: false}
             ]
         }
     ]);
     const [activeTasksBlockId, setActiveTasksBlockId] = useState(1);
-    const [todosInput, setTodosInput] = useState('');
 
+    /* Popup */
     const [addTaskPopup, setAddTaskPopup] = useState(false);
+    /* ----- */
 
     const deleteTask = (id) => {
         setTasksBlock(tasksBlock.filter(tasksBlockItem => {
@@ -42,20 +43,20 @@ function App() {
         setActiveTasksBlockId(activeTasksBlockId + 1);
     }
 
-    const addTask = (body) => {
+    const addTask = (title, text) => {
         let newTodo = {}
         setTasksBlock(tasksBlock.filter(tasksBlockItem => {
             if (tasksBlockItem.id === activeTasksBlockId) {
                 newTodo = {
                     id: tasksBlockItem.todos.length + 1,
-                    text: body,
+                    title: title,
+                    text: text,
                     checked: false
                 }
                 return tasksBlockItem.todos = [...tasksBlockItem.todos, newTodo]
             }
             return tasksBlockItem
         }));
-        setTodosInput('');
     }
 
     const doTodo = (id) => {
@@ -92,7 +93,7 @@ function App() {
                 <div>
                     <Menu setAddTaskPopup={setAddTaskPopup}/>
                     <TodosItems todo={showTodo} deleteTask={deleteTask} doToDo={doTodo} addTask={addTask}
-                                todosInput={todosInput} setTodosInput={setTodosInput} addTaskPopup={addTaskPopup}
+                                addTaskPopup={addTaskPopup}
                                 setAddTaskPopup={setAddTaskPopup}/>
                 </div>
             </div>

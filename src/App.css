@@ -5,15 +5,23 @@
   justify-content: center;
   text-align: center;
   margin-top: 50px;
-  padding: 10px 25px;
+  padding: 10px 0;
   width: 1000px;
   border: 1px solid #4c4c4c;
   border-radius: 20px;
   font-family: 'Assistant', sans-serif;
   min-height: 450px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
 }
 
 .AppWrapper {
   display: flex;
   justify-content: center;
+}
+
+.d-flex {
+  display: flex;
 }
