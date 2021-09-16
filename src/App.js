@@ -82,15 +82,15 @@ function App() {
         }))
     }
 
-    // const addTaskBlock = (body) => {
-    //     let newTaskBlock = {
-    //         id: tasksBlock.length + 1,
-    //         title: body,
-    //         todos: []
-    //     }
-    //     setTasksBlock([...tasksBlock, newTaskBlock])
-    //     setActiveTasksBlockId(activeTasksBlockId.length - 1);
-    // }
+    const addTaskBlock = (body) => {
+        let newTaskBlock = {
+            id: tasksBlock.length + 1,
+            title: body,
+            todos: []
+        }
+        setTasksBlock([...tasksBlock, newTaskBlock]);
+        setActiveTasksBlockId(tasksBlock.length + 1);
+    }
 
     const showTodo = tasksBlock.filter(t => t.id === activeTasksBlockId ? t.todos : null);
 
@@ -98,7 +98,7 @@ function App() {
         <div className='AppWrapper'>
             <div className="App">
                 <Sidebar tasks={tasksBlock} deleteTasksBlock={deleteTasksBlock}
-                         setActiveTasksBlockId={setActiveTasksBlockId}/>
+                         setActiveTasksBlockId={setActiveTasksBlockId} addTaskBlock={addTaskBlock}/>
                 <div>
                     <Menu setAddTaskPopup={setAddTaskPopup}/>
                     <TodosItems todo={showTodo} deleteTask={deleteTask} editTask={editTask} doToDo={doTodo} addTask={addTask}

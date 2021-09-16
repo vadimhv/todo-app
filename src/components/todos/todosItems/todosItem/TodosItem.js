@@ -24,7 +24,7 @@ const TodosItem = (props) => {
                 {showingMenu ?
                     <div className={styles.menuWrapper}>
                         <div className={`${styles.menu} `}>
-                            <div onClick={() => setShowingChangePopup(true)} className={styles.deleteTrigger}>edit</div>
+                            <div onClick={() => {setShowingChangePopup(true); setShowingMenu(false);}} className={styles.deleteTrigger}>edit</div>
                             <div onClick={() => deleteTask(id)} className={styles.deleteTrigger}>delete</div>
                         </div>
                     </div>

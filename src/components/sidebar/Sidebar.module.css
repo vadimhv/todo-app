@@ -42,3 +42,51 @@
 .title {
     cursor: pointer;
 }
+
+.addTaskBlockWrapper {
+    position: relative;
+    height: 250px;
+}
+
+.addTaskBlock {
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+}
+
+.addTaskBlockForm {
+    position: absolute;
+    bottom: 30px;
+}
+
+.addTaskBlockForm input {
+    width: 100px;
+    margin-top: 20px;
+    height: 15px;
+    padding: 5px 0 5px 5px;
+    background: #e2e2e2;
+    border: none;
+    font-size: 12px;
+    border-radius: 10px;
+}
+
+.addTaskBlockForm input:focus {
+    outline: none;
+}
+
+.addTaskBlockForm button {
+    background: #4c4c4c;
+    color: #fff;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.add {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
