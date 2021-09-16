@@ -14,7 +14,7 @@ const Sidebar = (props) => {
             </div>
             <div className={styles.tasksItems}>
                 {tasks.map(t => {
-                    return <TaskBlockItem id={t.id} title={t.title} setActiveTasksBlockId={setActiveTasksBlockId} deleteTasksBlock={deleteTasksBlock}/>
+                    return <TaskBlockItem key={t.id} id={t.id} title={t.title} setActiveTasksBlockId={setActiveTasksBlockId} deleteTasksBlock={deleteTasksBlock}/>
                 })}
             </div>
         </div>

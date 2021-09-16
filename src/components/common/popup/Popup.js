@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
-import styles from "../TodosItems.module.css";
+import styles from "./Popup.module.css";
 
 const Popup = (props) => {
 
-    const {addTask, setAddTaskPopup} = props;
+    const {btnName, submitFunction, hidePopUpFunc, titleValue, textValue} = props;
 
 
-    const [todosTitleInput, setTodosTitleInput] = useState('');
-    const [todosTextInput, setTodosTextInput] = useState('');
+    const [todosTitleInput, setTodosTitleInput] = useState(titleValue ? titleValue : "");
+    const [todosTextInput, setTodosTextInput] = useState(textValue ? textValue : "");
 
     const submitHandle = (e) => {
         e.preventDefault();
         if (todosTitleInput.length !== 0) {
-            addTask(todosTitleInput, todosTextInput);
-            setAddTaskPopup(false);
+            submitFunction(todosTitleInput, todosTextInput);
+            hidePopUpFunc(false);
         }
     }
 
@@ -25,13 +25,13 @@ const Popup = (props) => {
                         <div className={styles.popupTriggersWrapper}>
                             <div>
                                     <span className={styles.popupTrigger} onClick={() => {
-                                        setAddTaskPopup(false)
+                                        hidePopUpFunc(false)
                                         setTodosTitleInput('');
                                     }
                                     }>cancel</span>
                             </div>
                             <div>
-                                <button className={`${styles.popupTrigger} ${styles.popupAddTrigger}`}>Add</button>
+                                <button className={`${styles.popupTrigger} ${styles.popupAddTrigger}`}>{btnName}</button>
                             </div>
                         </div>
                         <div className={styles.popupContentWrapper}>

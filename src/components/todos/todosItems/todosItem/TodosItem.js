@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import styles from "../TodosItems.module.css";
+import Popup from "../../../common/popup/Popup";
 
 const TodosItem = (props) => {
 
-    const {id, checked, title, text, doToDo, deleteTask} = props;
+    const {id, checked, title, text, doToDo, deleteTask, editTask} = props;
 
     const [showingMenu, setShowingMenu] = useState(false);
+    const [showingChangePopup, setShowingChangePopup] = useState(false);
 
     return (
         <div key={id} className={styles.item}>
@@ -22,9 +24,15 @@ const TodosItem = (props) => {
                 {showingMenu ?
                     <div className={styles.menuWrapper}>
                         <div className={`${styles.menu} `}>
+                            <div onClick={() => setShowingChangePopup(true)} className={styles.deleteTrigger}>edit</div>
                             <div onClick={() => deleteTask(id)} className={styles.deleteTrigger}>delete</div>
                         </div>
                     </div>
+                    : null}
+                {showingChangePopup ?
+                    <Popup btnName={'Save'} titleValue={title} textValue={text}
+                           submitFunction={((title, text) => editTask(id, title, text))}
+                           hidePopUpFunc={setShowingChangePopup}/>
                     : null}
                 <div className={styles.text}>
                     <span className={`${checked ? styles.checked : null}`}>{text}</span>

@@ -59,6 +59,15 @@ function App() {
         }));
     }
 
+    const editTask = (id, title, text) => {
+        setTasksBlock(tasksBlock.filter(tasksBlockItem => {
+            if (tasksBlockItem.id === activeTasksBlockId) {
+                 return tasksBlockItem.todos = [...tasksBlockItem.todos.map(t => t.id === id ? {id: t.id, title: title, text: text, checked: false} : t)]
+            }
+            return tasksBlockItem
+        }));
+    }
+
     const doTodo = (id) => {
         setTasksBlock(tasksBlock.filter(tasksBlockItem => {
             if (tasksBlockItem.id === activeTasksBlockId) {
@@ -73,15 +82,15 @@ function App() {
         }))
     }
 
-    const addTaskBlock = (body) => {
-        let newTaskBlock = {
-            id: tasksBlock.length + 1,
-            title: body,
-            todos: []
-        }
-        setTasksBlock([...tasksBlock, newTaskBlock])
-        setActiveTasksBlockId(activeTasksBlockId.length - 1);
-    }
+    // const addTaskBlock = (body) => {
+    //     let newTaskBlock = {
+    //         id: tasksBlock.length + 1,
+    //         title: body,
+    //         todos: []
+    //     }
+    //     setTasksBlock([...tasksBlock, newTaskBlock])
+    //     setActiveTasksBlockId(activeTasksBlockId.length - 1);
+    // }
 
     const showTodo = tasksBlock.filter(t => t.id === activeTasksBlockId ? t.todos : null);
 
@@ -92,7 +101,7 @@ function App() {
                          setActiveTasksBlockId={setActiveTasksBlockId}/>
                 <div>
                     <Menu setAddTaskPopup={setAddTaskPopup}/>
-                    <TodosItems todo={showTodo} deleteTask={deleteTask} doToDo={doTodo} addTask={addTask}
+                    <TodosItems todo={showTodo} deleteTask={deleteTask} editTask={editTask} doToDo={doTodo} addTask={addTask}
                                 addTaskPopup={addTaskPopup}
                                 setAddTaskPopup={setAddTaskPopup}/>
                 </div>
