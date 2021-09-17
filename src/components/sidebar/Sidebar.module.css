@@ -85,6 +85,10 @@
     cursor: pointer;
 }
 
+.titleActiveTaskBlock {
+    color: silver;
+}
+
 .add {
     width: 15px;
     height: 15px;

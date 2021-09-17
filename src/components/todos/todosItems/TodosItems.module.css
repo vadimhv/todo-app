@@ -52,6 +52,7 @@
     font-size: 14px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .inputWrapper {
@@ -64,6 +65,7 @@
     width: 15px;
     height: 15px;
     cursor: pointer;
+    margin-left: 6px;
 }
 
 .delete {
@@ -74,6 +76,14 @@
 
 .checked {
     text-decoration: line-through;
+}
+
+.notDone {
+    color: #8e8e8e;
+}
+
+.notToDoInput {
+    opacity: .5;
 }
 
 .textAndMenuWrapper {

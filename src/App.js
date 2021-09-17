@@ -27,20 +27,23 @@ function App() {
     const [addTaskPopup, setAddTaskPopup] = useState(false);
     /* ----- */
 
-    const deleteTask = (id) => {
+    const deleteTask = (item) => {
         setTasksBlock(tasksBlock.filter(tasksBlockItem => {
             if (tasksBlockItem.id === activeTasksBlockId) {
-                return tasksBlockItem.todos = [...tasksBlockItem.todos.filter(t => {
-                    return t.id !== id
-                })]
+                const index  = tasksBlockItem.todos.indexOf(item);
+                return tasksBlockItem.todos = [...tasksBlockItem.todos.splice(0, index), ...tasksBlockItem.todos.splice(index + 1, tasksBlockItem.todos.length)]
             }
             return tasksBlock
         }))
     }
 
+    const changeTasksBlock = (id) => {
+        setActiveTasksBlockId(id);
+    }
+
     const deleteTasksBlock = (id) => {
         setTasksBlock(tasksBlock.filter(t => t.id !== id));
-        setActiveTasksBlockId(activeTasksBlockId + 1);
+        console.log(activeTasksBlockId)
     }
 
     const addTask = (title, text) => {
@@ -84,7 +87,7 @@ function App() {
 
     const addTaskBlock = (body) => {
         let newTaskBlock = {
-            id: tasksBlock.length + 1,
+            id: tasksBlock[tasksBlock.length - 1].id + 1,
             title: body,
             todos: []
         }
@@ -98,7 +101,7 @@ function App() {
         <div className='AppWrapper'>
             <div className="App">
                 <Sidebar tasks={tasksBlock} deleteTasksBlock={deleteTasksBlock}
-                         setActiveTasksBlockId={setActiveTasksBlockId} addTaskBlock={addTaskBlock}/>
+                         activeTasksBlock={activeTasksBlockId} setActiveTasksBlockId={setActiveTasksBlockId} changeTasksBlock={changeTasksBlock} addTaskBlock={addTaskBlock}/>
                 <div>
                     <Menu setAddTaskPopup={setAddTaskPopup}/>
                     <TodosItems todo={showTodo} deleteTask={deleteTask} editTask={editTask} doToDo={doTodo} addTask={addTask}
