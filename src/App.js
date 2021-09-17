@@ -2,7 +2,7 @@ import './App.css';
 import Sidebar from "./components/sidebar/Sidebar";
 import Menu from "./components/todos/menu/Menu";
 import TodosItems from "./components/todos/todosItems/TodosItems";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 function App() {
     const [tasksBlock, setTasksBlock] = useState([
@@ -21,6 +21,16 @@ function App() {
             ]
         }
     ]);
+
+    useEffect(() => {
+        const saved = JSON.parse(localStorage.getItem('tasks' || '[]'));
+        setTasksBlock(saved);
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('tasks', JSON.stringify(tasksBlock));
+    }, [tasksBlock]);
+
     const [activeTasksBlockId, setActiveTasksBlockId] = useState(1);
 
     /* Popup */
@@ -87,7 +97,7 @@ function App() {
 
     const addTaskBlock = (body) => {
         let newTaskBlock = {
-            id: tasksBlock[tasksBlock.length - 1].id + 1,
+            id: tasksBlock.length > 0 ? tasksBlock[tasksBlock.length - 1].id + 1 : 0,
             title: body,
             todos: []
         }
