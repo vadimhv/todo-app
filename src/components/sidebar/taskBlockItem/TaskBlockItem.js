@@ -5,15 +5,15 @@ import cancel from "../../../assets/img/cancel.png";
 
 const TaskBlockItem = (props) => {
 
-    const {tasks, activeTasksBlock, setActiveTasksBlockId, deleteTasksBlock, changeTasksBlock} = props;
+    const {tasks, activeTasksBlock, deleteTasksBlock, changeTasksBlock} = props;
 
     return (
-        <div className={styles.tasksItem} onClick={() => changeTasksBlock(tasks.id)}>
-            <div className={`${styles.title} ${activeTasksBlock === tasks.id ? null : styles.titleActiveTaskBlock}`}>
+        <div className={styles.tasksItem}>
+            <div className={`${styles.title} ${activeTasksBlock === tasks.id ? null : styles.titleActiveTaskBlock}`}  onClick={() => changeTasksBlock(tasks.id)}>
                 {tasks.title}
             </div>
             <div>
-                <img src={cancel} className={styles.cancel} alt="cancel" onClick={() => {deleteTasksBlock(tasks.id); setActiveTasksBlockId(tasks.id)}}/>
+                <img src={cancel} className={styles.cancel} alt="cancel" onClick={() => {deleteTasksBlock(tasks.id); }}/>
             </div>
         </div>
     );

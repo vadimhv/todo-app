@@ -5,13 +5,17 @@ import styles from './Menu.module.css';
 import add from '../../../assets/img/add.svg';
 const Menu = (props) => {
 
-    const {setAddTaskPopup} = props;
+    const {setAddTaskPopup, tasks} = props;
     return (
-        <div className={styles.menu}>
-            <div className={styles.add}>
-                <img src={add} className={styles.plus} alt="plus" onClick={() => setAddTaskPopup(true)}/>
-            </div>
-        </div>
+        <>
+            {
+                tasks.length > 0 ? <div className={styles.menu}>
+                    <div className={styles.add}>
+                        <img src={add} className={styles.plus} alt="plus" onClick={() => setAddTaskPopup(true)}/>
+                    </div>
+                </div> : null
+            }
+        </>
     );
 };
 
