@@ -2,8 +2,8 @@
     text-align: left;
     width: 700px;
     margin: 0 0 0 40px;
+    margin-right: auto;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
 
@@ -13,6 +13,7 @@
     align-items: center;
     padding: 20px;
     margin-bottom: 20px;
+    margin-right: auto;
     background: #ffefcc;
     color: #4c4c4c;
     border-radius: 10px;

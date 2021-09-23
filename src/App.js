@@ -7,7 +7,6 @@ import {useEffect, useState} from "react";
 function App() {
     const [tasksBlock, setTasksBlock] = useState([]);
 
-    const [activeTasksBlockId, setActiveTasksBlockId] = useState(0);
     useEffect(() => {
         const saved = JSON.parse(localStorage.getItem('tasks' || '[]'));
         setTasksBlock(saved);
@@ -18,6 +17,7 @@ function App() {
     }, [tasksBlock]);
 
 
+    const [activeTasksBlockId, setActiveTasksBlockId] = useState(0);
     /* Popup */
     const [addTaskPopup, setAddTaskPopup] = useState(false);
     /* ----- */
