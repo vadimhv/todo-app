@@ -4,22 +4,13 @@ import styles from './Sidebar.module.css';
 import add from '../../assets/img/add.svg'
 
 import TaskBlockItem from "./taskBlockItem/TaskBlockItem";
+import AddingTaskBlockForm from "./taskBlockForm/AddingTaskBlockForm";
 
 const Sidebar = (props) => {
 
     const {tasks, deleteTasksBlock, activeTasksBlock, setActiveTasksBlockId, addTaskBlock, changeTasksBlock} = props;
 
-    const [addTaskBlockValue, setAddTaskBlockValue] = useState("");
     const [addTaskBlockVisible, setAddTaskBlockVisible] = useState(false);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (addTaskBlockValue.length !== 0) {
-            addTaskBlock(addTaskBlockValue);
-            setAddTaskBlockVisible(false);
-            setAddTaskBlockValue('');
-        }
-    }
 
     return (
         <div className={styles.wrapper}>
@@ -36,13 +27,7 @@ const Sidebar = (props) => {
                 })}
             </div>
             <div className={styles.addTaskBlockWrapper}>
-                {addTaskBlockVisible ? <div className={styles.addTaskBlockForm}>
-                    <form onSubmit={handleSubmit}>
-                        <input type="text" placeholder={"task block value"} value={addTaskBlockValue}
-                               onChange={(e) => setAddTaskBlockValue(e.target.value)}/>
-                        <button>Add</button>
-                    </form>
-                </div> : null}
+                {addTaskBlockVisible ? <AddingTaskBlockForm setAddTaskBlockVisible={setAddTaskBlockVisible} addTaskBlock={addTaskBlock}/> : null}
                 <div className={styles.addTaskBlock} onClick={() => setAddTaskBlockVisible(!addTaskBlockVisible)}>
                     <img src={add} alt={'add'} className={styles.add}/>
                 </div>

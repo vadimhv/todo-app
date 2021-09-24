@@ -1,6 +1,6 @@
 import './App.css';
 import Sidebar from "./components/sidebar/Sidebar";
-import Menu from "./components/todos/menu/Menu";
+import TopMenu from "./components/todos/topMenu/TopMenu";
 import TodosItems from "./components/todos/todosItems/TodosItems";
 import {useEffect, useState} from "react";
 
@@ -18,34 +18,10 @@ function App() {
 
 
     const [activeTasksBlockId, setActiveTasksBlockId] = useState(0);
+
     /* Popup */
     const [addTaskPopup, setAddTaskPopup] = useState(false);
     /* ----- */
-
-    const deleteTask = (item) => {
-        setTasksBlock(tasksBlock.filter(tasksBlockItem => {
-            if (tasksBlockItem.id === activeTasksBlockId) {
-                const index = tasksBlockItem.todos.indexOf(item);
-                return tasksBlockItem.todos = [...tasksBlockItem.todos.splice(0, index), ...tasksBlockItem.todos.splice(index + 1, tasksBlockItem.todos.length)]
-            }
-            return tasksBlock
-        }))
-    }
-
-    const changeTasksBlock = (id) => {
-        setActiveTasksBlockId(id);
-    }
-
-    const deleteTasksBlock = (id) => {
-        setTasksBlock(tasksBlock.filter(t => t.id !== id));
-        if (id === tasksBlock[0].id && tasksBlock.length > 1) {
-            setActiveTasksBlockId(tasksBlock[1].id)
-        } else {
-            if(id === activeTasksBlockId && tasksBlock.length > 1) {
-                setActiveTasksBlockId(tasksBlock[id - 1].id);
-            }
-        }
-    }
 
     const addTask = (title, text) => {
         let newTodo = {}
@@ -77,7 +53,7 @@ function App() {
         }));
     }
 
-    const doTodo = (id) => {
+    const checkedTaskFinished = (id) => {
         setTasksBlock(tasksBlock.filter(tasksBlockItem => {
             if (tasksBlockItem.id === activeTasksBlockId) {
                 tasksBlockItem.todos.map(t => {
@@ -86,6 +62,17 @@ function App() {
                     }
                     return null
                 })
+            }
+            return tasksBlock
+        }))
+    }
+
+    const deleteTask = (item) => {
+        setTasksBlock(tasksBlock.filter(tasksBlockItem => {
+            if (tasksBlockItem.id === activeTasksBlockId) {
+                const index = tasksBlockItem.todos.indexOf(item);
+                return tasksBlockItem.todos = [...tasksBlockItem.todos.splice(0, index),
+                    ...tasksBlockItem.todos.splice(index + 1,tasksBlockItem.todos.length)]
             }
             return tasksBlock
         }))
@@ -105,7 +92,22 @@ function App() {
         }
     }
 
-    const showTodo = () => {
+    const changeTasksBlock = (id) => {
+        setActiveTasksBlockId(id);
+    }
+
+    const deleteTasksBlock = (id) => {
+        setTasksBlock(tasksBlock.filter(t => t.id !== id));
+        if (id === tasksBlock[0].id && tasksBlock.length > 1) {
+            setActiveTasksBlockId(tasksBlock[1].id)
+        } else {
+            if (id === activeTasksBlockId && tasksBlock.length > 1) {
+                setActiveTasksBlockId(tasksBlock[0].id);
+            }
+        }
+    }
+
+    const taskShowing = () => {
         return tasksBlock.filter(t => t.id === activeTasksBlockId ? t.todos : null);
     }
 
@@ -116,8 +118,8 @@ function App() {
                          activeTasksBlock={activeTasksBlockId} setActiveTasksBlockId={setActiveTasksBlockId}
                          changeTasksBlock={changeTasksBlock} addTaskBlock={addTaskBlock}/>
                 <div>
-                    <Menu setAddTaskPopup={setAddTaskPopup} tasks={showTodo()}/>
-                    <TodosItems todo={showTodo()} deleteTask={deleteTask} editTask={editTask} doToDo={doTodo}
+                    <TopMenu setAddTaskPopup={setAddTaskPopup} tasks={taskShowing()}/>
+                    <TodosItems todo={taskShowing()} deleteTask={deleteTask} editTask={editTask} doToDo={checkedTaskFinished}
                                 addTask={addTask}
                                 addTaskPopup={addTaskPopup}
                                 setAddTaskPopup={setAddTaskPopup}/>

@@ -25,11 +25,12 @@ const TodosItems = (props) => {
                 todo.map(t => {
                     return <React.Fragment key={t.id}>
                         {
-                            t.todos.length > 0 ? (t.todos.map(t => <TodosItem key={t.id} item={t}
-                                                                              doToDo={doToDo} editTask={editTask}
-                                                                              deleteTask={deleteTask}
-                                                                              setAddTaskPopup={setAddTaskPopup}/>)) :
-                                <span>No tasks, add something above using button</span>
+                            t.todos.length > 0 ?
+                                (t.todos.map(t => <TodosItem key={t.id} item={t}
+                                                             doToDo={doToDo} editTask={editTask}
+                                                             deleteTask={deleteTask}
+                                                             setAddTaskPopup={setAddTaskPopup}/>))
+                                : <span>No tasks, add something above using button</span>
                         }
                     </React.Fragment>
                 })}

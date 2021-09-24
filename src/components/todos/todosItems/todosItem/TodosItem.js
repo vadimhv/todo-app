@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styles from "../TodosItems.module.css";
 import Popup from "../../../common/popup/Popup";
+import ItemMenu from "./itemMenu/ItemMenu";
 
 const TodosItem = (props) => {
 
@@ -20,19 +21,8 @@ const TodosItem = (props) => {
                         ...
                     </div>
                 </div>
-
                 {showingMenu ?
-                    <div className={styles.menuWrapper}>
-                        <div className={`${styles.menu} `}>
-                            <div onClick={() => {setShowingChangePopup(true); setShowingMenu(false);}} className={styles.deleteTrigger}>edit</div>
-                            <div onClick={() => deleteTask(item)} className={styles.deleteTrigger}>delete</div>
-                        </div>
-                    </div>
-                    : null}
-                {showingChangePopup ?
-                    <Popup btnName={'Save'} titleValue={item.title} textValue={item.text}
-                           submitFunction={((title, text) => editTask(item.id, title, text))}
-                           hidePopUpFunc={setShowingChangePopup}/>
+                    <ItemMenu item={item} setShowingChangePopup={setShowingChangePopup} setShowingMenu={setShowingMenu} deleteTask={deleteTask} />
                     : null}
                 <div className={styles.text}>
                     <span className={`${item.checked ? styles.checked : null}`}>{item.text}</span>
@@ -42,6 +32,12 @@ const TodosItem = (props) => {
                         <input type="checkbox" checked={item.checked} onChange={() => doToDo(item.id)}
                                className={`${styles.input} ${item.checked ? null : styles.notToDoInput}`}/></label>
                 </div>
+
+                {showingChangePopup ?
+                    <Popup btnName={'Save'} titleValue={item.title} textValue={item.text}
+                           submitFunction={((title, text) => editTask(item.id, title, text))}
+                           hidePopUpFunc={setShowingChangePopup}/>
+                    : null}
             </div>
         </div>
     );

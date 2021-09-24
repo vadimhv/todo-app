@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './Menu.module.css';
+import styles from './TopMenu.module.css';
 
 /* Img */
 import add from '../../../assets/img/add.svg';
-const Menu = (props) => {
+const TopMenu = (props) => {
 
     const {setAddTaskPopup, tasks} = props;
     return (
@@ -19,4 +19,4 @@ const Menu = (props) => {
     );
 };
 
-export default Menu;
+export default TopMenu;
